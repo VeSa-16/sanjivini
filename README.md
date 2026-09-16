@@ -1,16 +1,37 @@
-# React + Vite
+# Sanjivani Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A polished SIH-ready frontend prototype for a crop lifecycle companion.
 
-Currently, two official plugins are available:
+## Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+## Demo behavior
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Onboarding creates a local farm profile.
+- The default date is prefilled ~47 days in the past so Tomato opens around flowering stage.
+- Today generates stage/weather-based mock advice.
+- Tasks, plant checks and mock photo checks are persisted in localStorage.
+- Journey supports farmer stage correction.
+- Weekly Report summarizes the last seven days.
+- History shows the recorded farm timeline.
 
-## Expanding the Oxlint configuration
+## Reset onboarding
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Open browser DevTools → Application → Local Storage and delete:
+- `sanjivani:farm`
+- `sanjivani:logs`
+
+Or run in console:
+
+```js
+localStorage.clear()
+location.reload()
+```
+
+## Data safety
+
+All agricultural recommendations in this prototype are demonstration content. Replace mock rules with validated, source-attributed regional agricultural guidance before real-world use.

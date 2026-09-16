@@ -1,0 +1,43 @@
+{
+  "rules": [
+    {
+      "when": {
+        "rainProbabilityMin": 65
+      },
+      "status": "postpone",
+      "title": "Rain may cover today's need",
+      "message": "Rain is likely soon. Check soil moisture before irrigating and avoid unnecessary watering.",
+      "tone": "info"
+    },
+    {
+      "when": {
+        "stageIds": [
+          "flowering",
+          "fruit-set"
+        ],
+        "temperatureMin": 31,
+        "rainProbabilityMax": 35
+      },
+      "status": "check",
+      "title": "Protect the crop from moisture stress",
+      "message": "The crop is in a sensitive stage and conditions are warm. Check the root zone before deciding irrigation.",
+      "tone": "warning"
+    },
+    {
+      "when": {
+        "daysSinceIrrigationMin": 3,
+        "rainProbabilityMax": 35
+      },
+      "status": "check",
+      "title": "Irrigation check is due",
+      "message": "No recent irrigation is recorded. Check soil moisture in the field before watering.",
+      "tone": "action"
+    }
+  ],
+  "fallback": {
+    "status": "check",
+    "title": "Check soil moisture today",
+    "message": "Use field moisture and crop condition to decide whether irrigation is needed.",
+    "tone": "normal"
+  }
+}

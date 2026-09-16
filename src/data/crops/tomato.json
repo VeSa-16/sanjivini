@@ -1,0 +1,121 @@
+{
+  "id": "tomato",
+  "name": "Tomato",
+  "emoji": "\ud83c\udf45",
+  "defaultVariety": "Hybrid Tomato",
+  "totalDays": 120,
+  "stages": [
+    {
+      "id": "establishment",
+      "name": "Establishment",
+      "shortName": "Establish",
+      "startDay": 1,
+      "endDay": 14,
+      "emoji": "\ud83c\udf31",
+      "description": "Roots settle and the young plant adjusts after transplanting.",
+      "tasks": [
+        "Check plant survival",
+        "Keep root zone evenly moist",
+        "Inspect for transplant shock"
+      ]
+    },
+    {
+      "id": "vegetative",
+      "name": "Vegetative Growth",
+      "shortName": "Growth",
+      "startDay": 15,
+      "endDay": 34,
+      "emoji": "\ud83c\udf3f",
+      "description": "Leaves, stems and canopy develop rapidly.",
+      "tasks": [
+        "Check plant vigor",
+        "Maintain irrigation rhythm",
+        "Watch for leaf damage"
+      ]
+    },
+    {
+      "id": "budding",
+      "name": "Budding",
+      "shortName": "Budding",
+      "startDay": 35,
+      "endDay": 44,
+      "emoji": "\ud83c\udf3c",
+      "description": "Flower buds begin to appear and reproductive growth starts.",
+      "tasks": [
+        "Inspect new buds",
+        "Avoid moisture stress",
+        "Check for early pest activity"
+      ]
+    },
+    {
+      "id": "flowering",
+      "name": "Flowering",
+      "shortName": "Flowering",
+      "startDay": 45,
+      "endDay": 59,
+      "emoji": "\ud83c\udf3c",
+      "description": "Flowers open and successful pollination becomes important.",
+      "tasks": [
+        "Inspect flower retention",
+        "Avoid large moisture swings",
+        "Watch humidity-related crop health"
+      ]
+    },
+    {
+      "id": "fruit-set",
+      "name": "Fruit Set",
+      "shortName": "Fruit set",
+      "startDay": 60,
+      "endDay": 74,
+      "emoji": "\ud83c\udf45",
+      "description": "Flowers transition into young fruits.",
+      "tasks": [
+        "Check fruit setting",
+        "Maintain consistent moisture",
+        "Inspect for pest damage"
+      ]
+    },
+    {
+      "id": "fruit-development",
+      "name": "Fruit Development",
+      "shortName": "Fruit grow",
+      "startDay": 75,
+      "endDay": 94,
+      "emoji": "\ud83c\udf45",
+      "description": "Fruits gain size and the crop carries a heavier load.",
+      "tasks": [
+        "Check fruit growth",
+        "Keep irrigation steady",
+        "Inspect fruit and foliage"
+      ]
+    },
+    {
+      "id": "maturation",
+      "name": "Fruit Maturation",
+      "shortName": "Maturity",
+      "startDay": 95,
+      "endDay": 109,
+      "emoji": "\ud83e\uddfa",
+      "description": "Fruits begin changing toward harvest maturity.",
+      "tasks": [
+        "Monitor color change",
+        "Prepare harvest materials",
+        "Continue health checks"
+      ]
+    },
+    {
+      "id": "harvest",
+      "name": "Harvest",
+      "shortName": "Harvest",
+      "startDay": 110,
+      "endDay": 140,
+      "emoji": "\ud83e\uddfa",
+      "description": "Harvestable fruits are picked in rounds as they mature.",
+      "tasks": [
+        "Pick mature fruits",
+        "Record harvest quantity",
+        "Review crop performance"
+      ]
+    }
+  ]
+}

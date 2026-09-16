@@ -1,0 +1,87 @@
+{
+  "id": "wheat",
+  "name": "Wheat",
+  "emoji": "\ud83c\udf3e",
+  "defaultVariety": "Wheat",
+  "totalDays": 125,
+  "stages": [
+    {
+      "id": "germination",
+      "name": "Germination",
+      "shortName": "Germination",
+      "startDay": 1,
+      "endDay": 10,
+      "emoji": "\ud83c\udf31",
+      "description": "Seed germination and crop establishment.",
+      "tasks": [
+        "Check emergence",
+        "Inspect soil moisture"
+      ]
+    },
+    {
+      "id": "tillering",
+      "name": "Tillering",
+      "shortName": "Tillering",
+      "startDay": 11,
+      "endDay": 40,
+      "emoji": "\ud83c\udf3f",
+      "description": "New shoots develop from the base.",
+      "tasks": [
+        "Check crop stand",
+        "Monitor field moisture"
+      ]
+    },
+    {
+      "id": "stem",
+      "name": "Stem Extension",
+      "shortName": "Stem",
+      "startDay": 41,
+      "endDay": 65,
+      "emoji": "\ud83c\udf3e",
+      "description": "Stem elongation accelerates.",
+      "tasks": [
+        "Inspect crop uniformity",
+        "Watch for stress"
+      ]
+    },
+    {
+      "id": "heading",
+      "name": "Heading & Flowering",
+      "shortName": "Heading",
+      "startDay": 66,
+      "endDay": 85,
+      "emoji": "\ud83c\udf3e",
+      "description": "Heads emerge and flowering occurs.",
+      "tasks": [
+        "Check heads",
+        "Avoid severe moisture stress"
+      ]
+    },
+    {
+      "id": "grain",
+      "name": "Grain Filling",
+      "shortName": "Grain fill",
+      "startDay": 86,
+      "endDay": 110,
+      "emoji": "\ud83c\udf3e",
+      "description": "Grains develop and gain weight.",
+      "tasks": [
+        "Monitor grain filling",
+        "Inspect crop health"
+      ]
+    },
+    {
+      "id": "harvest",
+      "name": "Maturity & Harvest",
+      "shortName": "Harvest",
+      "startDay": 111,
+      "endDay": 140,
+      "emoji": "\ud83e\uddfa",
+      "description": "Crop dries toward harvest maturity.",
+      "tasks": [
+        "Check maturity",
+        "Prepare for harvest"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "scenarios": [
+    {
+      "id": "humid-rain",
+      "label": "Humid \u2022 Rain likely",
+      "temperature": 29,
+      "feelsLike": 31,
+      "humidity": 88,
+      "rainProbability": 76,
+      "wind": 9,
+      "condition": "Cloudy with rain likely",
+      "icon": "\ud83c\udf27\ufe0f",
+      "tip": "Rain is likely. Recheck irrigation and inspect lower foliage."
+    },
+    {
+      "id": "warm-dry",
+      "label": "Warm \u2022 Mostly dry",
+      "temperature": 32,
+      "feelsLike": 34,
+      "humidity": 59,
+      "rainProbability": 18,
+      "wind": 11,
+      "condition": "Warm and partly sunny",
+      "icon": "\ud83c\udf24\ufe0f",
+      "tip": "Warm conditions can raise crop water demand. Check root-zone moisture."
+    },
+    {
+      "id": "pleasant",
+      "label": "Mild \u2022 Stable",
+      "temperature": 27,
+      "feelsLike": 28,
+      "humidity": 68,
+      "rainProbability": 24,
+      "wind": 8,
+      "condition": "Pleasant and partly cloudy",
+      "icon": "\u26c5",
+      "tip": "Conditions are stable. Continue the planned field round."
+    },
+    {
+      "id": "wet",
+      "label": "Wet spell",
+      "temperature": 25,
+      "feelsLike": 27,
+      "humidity": 92,
+      "rainProbability": 89,
+      "wind": 13,
+      "condition": "Rainy and humid",
+      "icon": "\ud83c\udf27\ufe0f",
+      "tip": "Avoid unnecessary irrigation and inspect for waterlogging or disease symptoms."
+    }
+  ]
+}

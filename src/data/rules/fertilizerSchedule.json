@@ -1,0 +1,44 @@
+{
+  "schedule": [
+    {
+      "stageId": "establishment",
+      "title": "Establishment nutrition",
+      "message": "Focus on healthy establishment. Follow your soil-test and local crop recommendation before applying nutrients."
+    },
+    {
+      "stageId": "vegetative",
+      "title": "Vegetative nutrition",
+      "message": "Review the nutrient plan for active leaf and stem growth, considering what has already been applied."
+    },
+    {
+      "stageId": "budding",
+      "title": "Prepare for flowering",
+      "message": "Review the next scheduled nutrient application and avoid repeating an application already recorded."
+    },
+    {
+      "stageId": "flowering",
+      "title": "Flowering-stage nutrition",
+      "message": "The crop is flowering. Review stage-specific nutrition against your soil-test and previous application."
+    },
+    {
+      "stageId": "fruit-set",
+      "title": "Support fruit set",
+      "message": "Review nutrient needs for fruit setting while keeping a record of previous applications."
+    },
+    {
+      "stageId": "fruit-development",
+      "title": "Fruit-development nutrition",
+      "message": "Review the crop plan for fruit development and only apply what is due for your field."
+    },
+    {
+      "stageId": "maturation",
+      "title": "Maturity-stage review",
+      "message": "Avoid unnecessary late applications. Follow crop and local expert recommendations."
+    },
+    {
+      "stageId": "harvest",
+      "title": "Harvest period",
+      "message": "Focus on harvest and crop records. Only perform applications that are appropriate for the harvest interval."
+    }
+  ]
+}
