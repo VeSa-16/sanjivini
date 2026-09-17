@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import tomato from "../data/crops/tomato.json";
 import wheat from "../data/crops/wheat.json";
+import onion from "../data/crops/onion.json";
+import chilli from "../data/crops/chilli.json";
+import potato from "../data/crops/potato.json";
+import maize from "../data/crops/maize.json";
 import { getFarm } from "../store/farmStore";
 import { getDemoState } from "../store/demoStore";
 import { resolveStage, stageProgress } from "../engine/stageResolver";
 
-const crops = { tomato, wheat };
+const crops = { tomato, wheat, onion, chilli, potato, maize };
 
 export function useCropStage() {
   const [farm, setFarm] = useState(getFarm());

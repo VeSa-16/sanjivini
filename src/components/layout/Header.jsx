@@ -3,8 +3,13 @@ import { useCropStage } from "../../hooks/useCropStage";
 import { useFarms } from "../../hooks/useFarms";
 import tomato from "../../data/crops/tomato.json";
 import wheat from "../../data/crops/wheat.json";
+import onion from "../../data/crops/onion.json";
+import chilli from "../../data/crops/chilli.json";
+import potato from "../../data/crops/potato.json";
+import maize from "../../data/crops/maize.json";
+import { getFarm } from "../../store/farmStore";
 
-const allCrops = { tomato, wheat };
+const allCrops = { tomato, wheat, onion, chilli, potato, maize };
 
 const pageTitles = {
   "/today": ["Today", "Your farm, simplified."],
