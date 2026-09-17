@@ -28,20 +28,24 @@ function getWeatherConditionText(weatherCode) {
 export async function fetchLiveWeather(lat = 18.5204, lon = 73.8567) {
   try {
     // Open-Meteo is completely free, requires no API key, and activates instantly.
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m,is_day&hourly=precipitation_probability`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m,is_day&hourly=precipitation_probability&daily=temperature_2m_max&timezone=auto`;
     const res = await fetch(url);
     if (!res.ok) throw new Error("Weather fetch failed");
     
     const data = await res.json();
     const current = data.current;
+    const daily = data.daily;
     
     // Fallback probability if current doesn't have it, we take the next hour's probability
     const rainProb = current.precipitation_probability || (data.hourly && data.hourly.precipitation_probability[0]) || 0;
+    
+    // Use the daily maximum temperature for the primary display because agronomic decisions rely on daytime highs
+    const maxTemp = daily && daily.temperature_2m_max ? Math.round(daily.temperature_2m_max[0]) : Math.round(current.temperature_2m);
 
     return {
       id: "live",
       condition: getWeatherConditionText(current.weather_code),
-      temperature: Math.round(current.temperature_2m),
+      temperature: maxTemp,
       feelsLike: Math.round(current.apparent_temperature),
       humidity: Math.round(current.relative_humidity_2m),
       rainProbability: rainProb,

@@ -15,7 +15,7 @@ export default function BottomNav() {
   return (
     <>
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-[230px] border-r border-[#173f2c]/8 bg-[#f4f3ea]/90 p-5 backdrop-blur-xl lg:block">
-        <Link to="/today" className="block px-2 py-2">
+        <Link to="/" className="block px-2 py-2">
           <img src="/logo.png" alt="Sanjivani" className="h-14 object-contain drop-shadow-md origin-left scale-110" />
           <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#7f897f] ml-1">Crop companion</div>
         </Link>

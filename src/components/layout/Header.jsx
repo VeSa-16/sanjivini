@@ -33,7 +33,7 @@ export default function Header() {
     <header className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 pb-5 pt-5 sm:px-6 lg:px-8">
       <div className="min-w-0">
         <div className="mb-2 flex items-center gap-2 lg:hidden">
-          <Link to="/today">
+          <Link to="/">
             <img src="/logo.png" alt="Sanjivani" className="h-12 object-contain drop-shadow-md" />
           </Link>
         </div>
