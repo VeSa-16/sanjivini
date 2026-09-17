@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Sprout, Droplets, Leaf, Bug, CloudSunRain, Landmark } from "lucide-react";
 import TodayPlanCard from "../components/today/TodayPlanCard";
 import WeatherCard from "../components/today/WeatherCard";
 import AlertCard from "../components/today/AlertCard";
@@ -9,6 +10,13 @@ import PhotoUpload from "../components/plantCheck/PhotoUpload";
 import Card from "../components/ui/Card";
 import { useTodayAdvice } from "../hooks/useTodayAdvice";
 import { getFarmHealthScore } from "../store/logStore";
+
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
 
 export default function TodayPage() {
   const { farm, crop, stage, progress, weather, advice } = useTodayAdvice();
@@ -24,7 +32,7 @@ export default function TodayPage() {
     <div className="space-y-4">
       {/* Greeting */}
       <div className="px-1 pt-2">
-        <h1 className="font-serif text-3xl font-bold text-[#173f2c]">Good morning, {farm.farmerName || "Ramesh"} 👋</h1>
+        <h1 className="font-serif text-3xl font-bold text-[#173f2c]">{getGreeting()}, {farm.farmerName || "Ramesh"}</h1>
         <p className="mt-1 text-sm text-[#687269]">Here’s what your {crop.name.toLowerCase()} crop needs today.</p>
       </div>
 
@@ -33,23 +41,23 @@ export default function TodayPage() {
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a] mb-4">Your crop today</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2 text-sm">
           <div>
-            <div className="font-bold text-[#173f2c]">🌱 Stage</div>
+            <div className="font-bold text-[#173f2c] flex items-center gap-1.5"><Sprout size={14} /> Stage</div>
             <div className="text-[#687269] mt-0.5">{stage.name}</div>
           </div>
           <div>
-            <div className="font-bold text-[#173f2c]">💧 Water</div>
+            <div className="font-bold text-[#173f2c] flex items-center gap-1.5"><Droplets size={14} /> Water</div>
             <div className="text-[#687269] mt-0.5">{advice.tasks.find(t => t.type === 'irrigation')?.what.replace('.', '') || "Optimal"}</div>
           </div>
           <div>
-            <div className="font-bold text-[#173f2c]">🌿 Nutrition</div>
+            <div className="font-bold text-[#173f2c] flex items-center gap-1.5"><Leaf size={14} /> Nutrition</div>
             <div className="text-[#687269] mt-0.5">{advice.tasks.find(t => t.type === 'nutrition') ? "1 task due" : "Optimal"}</div>
           </div>
           <div>
-            <div className="font-bold text-[#173f2c]">🦠 Disease risk</div>
+            <div className="font-bold text-[#173f2c] flex items-center gap-1.5"><Bug size={14} /> Disease risk</div>
             <div className="text-[#687269] mt-0.5">{advice.disease.risk}</div>
           </div>
           <div>
-            <div className="font-bold text-[#173f2c]">🌦 Weather</div>
+            <div className="font-bold text-[#173f2c] flex items-center gap-1.5"><CloudSunRain size={14} /> Weather</div>
             <div className="text-[#687269] mt-0.5">{advice.weatherContext?.impact || "Stable"}</div>
           </div>
         </div>
@@ -70,7 +78,7 @@ export default function TodayPage() {
                   As a {crop.name} farmer with {farm.area} {farm.areaUnit}, you are eligible for a 50% state subsidy on drip equipment this month.
                 </p>
               </div>
-              <div className="text-3xl shrink-0">🏛️</div>
+              <div className="text-[#346b82] shrink-0"><Landmark size={32} /></div>
             </div>
           </Card>
 
@@ -99,7 +107,7 @@ export default function TodayPage() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a]">Your farm</p>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {[
-                ["Crop", `${crop.emoji} ${crop.name}`],
+                ["Crop", crop.name],
                 ["Area", `${farm.area} ${farm.areaUnit}`],
                 ["Soil", farm.soilType],
                 ["Irrigation", farm.irrigationMethod],

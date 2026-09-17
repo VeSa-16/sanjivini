@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Card from "../components/ui/Card";
+import { Check, Leaf, Camera, Sprout } from "lucide-react";
 import Button from "../components/ui/Button";
 import EndOfCropSummary from "../components/reports/EndOfCropSummary";
 import Ledger from "../components/reports/Ledger";
 import { clearLogs, getLogs, getFinancials } from "../store/logStore";
 import { useCropStage } from "../hooks/useCropStage";
 
-const iconFor = { task: "✓", "plant-check": "🌿", photo: "📷" };
+const iconFor = { task: <Check size={20} />, "plant-check": <Leaf size={20} />, photo: <Camera size={20} /> };
 
 export default function HistoryPage() {
   const { crop } = useCropStage();
@@ -59,7 +60,7 @@ export default function HistoryPage() {
 
             {logs.length === 0 ? (
               <div className="mt-8 rounded-[24px] bg-[#f5f6f1] p-8 text-center">
-                <div className="text-4xl">🌱</div>
+                <div className="flex justify-center text-[#3b7c53]"><Sprout size={40} /></div>
                 <h3 className="mt-3 font-bold text-[#3d5043]">No records yet</h3>
                 <p className="mt-1 text-sm text-[#7a847c]">Complete tasks or a plant check on Today to build your farm history.</p>
               </div>

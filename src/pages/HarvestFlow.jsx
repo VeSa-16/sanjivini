@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../components/ui/Card";
+import { Wheat } from "lucide-react";
 import Button from "../components/ui/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useCropStage } from "../hooks/useCropStage";
@@ -38,7 +39,7 @@ export default function HarvestFlow() {
       <Card className="p-5 sm:p-8 text-center">
         {step === 1 && (
           <div>
-            <div className="text-5xl mb-4">🌾</div>
+            <div className="flex justify-center mb-4 text-[#d4ad64]"><Wheat size={64} /></div>
             <h2 className="font-serif text-3xl font-bold text-farm-text mb-2">Record Harvest</h2>
             <p className="text-farm-muted mb-8">Congratulations on reaching the end of the crop journey. Let's record your yield.</p>
             

@@ -12,6 +12,13 @@ import ExpenseLedger from "./pages/ExpenseLedger";
 import HarvestFlow from "./pages/HarvestFlow";
 import { getFarm } from "./store/farmStore";
 
+import LandingPage from "./pages/LandingPage";
+import MarketingLayout from "./components/layout/MarketingLayout";
+import WhySanjivaniPage from "./pages/WhySanjivaniPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
+import FeaturesPage from "./pages/FeaturesPage";
+import ImpactPage from "./pages/ImpactPage";
+
 function ProtectedLayout() {
   const location = useLocation();
   const farm = getFarm();
@@ -32,10 +39,15 @@ function ProtectedLayout() {
 }
 
 export default function App() {
-  const farm = getFarm();
-
   return (
     <Routes>
+      <Route element={<MarketingLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/why" element={<WhySanjivaniPage />} />
+        <Route path="/how-it-works" element={<HowItWorksPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/impact" element={<ImpactPage />} />
+      </Route>
       <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<ProtectedLayout />}>
         <Route path="/today" element={<TodayPage />} />
@@ -46,7 +58,6 @@ export default function App() {
         <Route path="/ledger" element={<ExpenseLedger />} />
         <Route path="/harvest" element={<HarvestFlow />} />
       </Route>
-      <Route path="/" element={<Navigate to={farm.onboarded ? "/today" : "/onboarding"} replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

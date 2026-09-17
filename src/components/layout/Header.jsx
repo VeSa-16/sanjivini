@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useCropStage } from "../../hooks/useCropStage";
 import { useFarms } from "../../hooks/useFarms";
 import tomato from "../../data/crops/tomato.json";
@@ -33,7 +33,9 @@ export default function Header() {
     <header className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 pb-5 pt-5 sm:px-6 lg:px-8">
       <div className="min-w-0">
         <div className="mb-2 flex items-center gap-2 lg:hidden">
-          <img src="/logo.png" alt="Sanjivani" className="h-12 object-contain drop-shadow-md" />
+          <Link to="/today">
+            <img src="/logo.png" alt="Sanjivani" className="h-12 object-contain drop-shadow-md" />
+          </Link>
         </div>
         <h1 className="font-serif text-3xl font-bold tracking-[-0.03em] text-[#173f2c] sm:text-4xl">{title}</h1>
         <p className="mt-1 max-w-xl text-sm text-[#687269] sm:text-base">{subtitle}</p>

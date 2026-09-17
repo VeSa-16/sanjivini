@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Card from "../ui/Card";
 import { addLog, getAllLogs } from "../../store/logStore";
 import { getState } from "../../store/farmStore";
+import { Droplets, Sprout, Bug } from "lucide-react";
 
-const icons = { irrigation: "💧", nutrition: "🌱", health: "🐛" };
+const icons = { irrigation: <Droplets size={16} />, nutrition: <Sprout size={16} />, health: <Bug size={16} /> };
 
 export default function TaskChecklist({ advice }) {
   const [status, setStatus] = useState({});
@@ -42,7 +43,7 @@ export default function TaskChecklist({ advice }) {
         <div>
           <h3 className="font-serif text-2xl font-bold text-farm-text">Your {advice.tasks.length} things for today</h3>
           <p className="text-sm font-semibold text-farm-muted mt-1">
-            {remainingCount <= 0 ? "Today's crop care is complete 🌱" : `${remainingCount} task${remainingCount > 1 ? 's' : ''} remaining`}
+            {remainingCount <= 0 ? "Today's crop care is complete" : `${remainingCount} task${remainingCount > 1 ? 's' : ''} remaining`}
           </p>
         </div>
       </div>
@@ -62,7 +63,7 @@ export default function TaskChecklist({ advice }) {
                 <div className="grid size-8 shrink-0 place-items-center rounded-full bg-[#173f2c] text-sm font-bold text-white shadow-sm mt-0.5">{index + 1}</div>
                 <div className="min-w-0 flex-1">
                   <h4 className="text-sm font-bold uppercase tracking-[0.16em] text-[#346b82] mb-1">
-                    {icons[task.type] || "✓"} {task.category}
+                    <span className="inline-flex items-center gap-1.5 align-middle">{icons[task.type] || "✓"} {task.category}</span>
                   </h4>
                   <p className="text-base font-bold text-[#173f2c] mb-1">{task.what}</p>
                   <p className="text-sm leading-6 text-[#687269]">{task.how}</p>

@@ -1,5 +1,6 @@
 import Card from "../ui/Card";
 import Badge from "../ui/Badge";
+import { Bug, Eye, Check } from "lucide-react";
 
 export default function AlertCard({ disease }) {
   const elevated = disease.risk === "Moderate";
@@ -9,10 +10,10 @@ export default function AlertCard({ disease }) {
   return (
     <Card className="p-5 sm:p-6 bg-[#fffbf7] border border-[#f5e6d3]">
       <div className="flex items-start gap-4">
-        <div className={`grid size-12 shrink-0 place-items-center rounded-2xl text-xl ${
+        <div className={`grid size-12 shrink-0 place-items-center rounded-2xl ${
           elevated ? "bg-urgency-red-bg text-urgency-red-text" : watch ? "bg-urgency-yellow-bg text-urgency-yellow-text" : "bg-urgency-green-bg text-urgency-green-text"
         }`}>
-          {elevated ? "🦠" : watch ? "👀" : "✓"}
+          {elevated ? <Bug size={24} /> : watch ? <Eye size={24} /> : <Check size={24} />}
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
