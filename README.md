@@ -1,6 +1,4 @@
-Absolutely — below is an **~800–900 word, professional, copy-paste-ready `README.md`** designed specifically for your **Smart India Hackathon (SIH)** submission. It includes **Mermaid flowcharts, architecture diagrams, feature flows, setup, API details, project structure, reliability strategy, and roadmap**.
 
-````markdown
 # 🌱 Sanjivani — Intelligent Crop Companion
 
 > ### **Localized Weather. Crop Intelligence. Better Decisions.**
@@ -561,7 +559,4 @@ flowchart LR
 
 **Built for farmers • Built for smarter decisions • Built for a more resilient agricultural future**
 
-```
-
-**Small submission tip:** keep the README exactly like this in `README.md`, but replace `<YOUR_REPOSITORY_URL>` and any AI environment-variable names with the **actual variables used in your code**. This makes the repository look substantially more complete and professional to a technical evaluator.
 ```
