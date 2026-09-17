@@ -143,7 +143,11 @@ export default function Onboarding() {
   const daysSince = Math.floor((Date.now() - new Date(farm.sowingDate).getTime()) / 86400000);
 
   return (
-    <main className="min-h-screen bg-[#f4f3ea] text-[#20352a] font-sans flex flex-col">
+    <main className="min-h-screen bg-gradient-to-br from-[#f8f9f6] via-[#f1f4ef] to-[#e4ebe4] text-[#20352a] font-sans flex flex-col relative overflow-hidden">
+      {/* Premium Ambient Background Orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#d4ad64]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#173f2c]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="relative z-10 flex flex-col flex-1">
       {/* Progress Bar (Hidden on Screen 1 and post-setup screens) */}
       {step > 1 && step < 10 && (
         <div className="w-full max-w-4xl mx-auto px-6 pt-8 pb-4">
@@ -154,7 +158,7 @@ export default function Onboarding() {
               style={{ width: `${(phase / 5) * 100}%` }}
             ></div>
             {[1, 2, 3, 4, 5].map(p => (
-              <div key={p} className={`flex flex-col items-center gap-2 bg-[#f4f3ea] px-2 ${p > phase ? 'opacity-40' : ''}`}>
+              <div key={p} className={`flex flex-col items-center gap-2 bg-transparent px-2 backdrop-blur-sm ${p > phase ? 'opacity-40' : ''}`}>
                 <div className={`text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center ${p <= phase ? 'bg-[#173f2c] text-white' : 'bg-[#e1e5df] text-[#7d867e]'}`}>
                   {p < phase ? '✓' : p}
                 </div>
@@ -190,7 +194,7 @@ export default function Onboarding() {
                 Sanjivani helps you understand what your crop needs — from sowing to harvest.
               </p>
               <div className="mt-12 space-y-4">
-                <button onClick={() => setStep(3)} className="w-full sm:w-auto px-10 py-4 bg-[#173f2c] text-white rounded-2xl font-bold text-lg shadow-xl shadow-[#173f2c]/20 hover:bg-[#123021] transition">
+                <button onClick={() => setStep(3)} className="w-full sm:w-auto px-10 py-4 bg-[#173f2c] text-white rounded-[20px] font-bold text-lg shadow-[0_8px_30px_rgba(23,63,44,0.3)] hover:shadow-[0_12px_40px_rgba(23,63,44,0.4)] hover:-translate-y-1 hover:bg-[#123021] transition-all duration-300">
                   Start My Crop Journey
                 </button>
                 <div className="pt-2">
@@ -213,15 +217,15 @@ export default function Onboarding() {
               <h2 className="font-serif text-4xl font-bold text-[#173f2c] leading-tight text-center mb-10">Every day, your crop asks a different question.</h2>
               
               <div className="space-y-4">
-                <div className="bg-white p-5 rounded-[24px] shadow-sm flex items-center gap-4 border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex items-center gap-4 border border-white hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-4xl">💧</div>
                   <div className="font-bold text-lg text-[#3b4e40]">"Does it need water today?"</div>
                 </div>
-                <div className="bg-white p-5 rounded-[24px] shadow-sm flex items-center gap-4 border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex items-center gap-4 border border-white hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-4xl">🌱</div>
                   <div className="font-bold text-lg text-[#3b4e40]">"What does it need at this stage?"</div>
                 </div>
-                <div className="bg-white p-5 rounded-[24px] shadow-sm flex items-center gap-4 border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex items-center gap-4 border border-white hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-4xl">🔎</div>
                   <div className="font-bold text-lg text-[#3b4e40]">"Does this plant look healthy?"</div>
                 </div>
@@ -246,7 +250,7 @@ export default function Onboarding() {
                 onChange={(e) => update("farmerName", e.target.value)}
                 placeholder="Your name"
                 autoFocus
-                className="w-full text-center text-3xl font-bold text-[#173f2c] bg-transparent border-b-2 border-[#173f2c]/20 pb-4 outline-none focus:border-[#173f2c] placeholder:text-[#173f2c]/20"
+                className="w-full text-center text-3xl font-bold text-[#173f2c] bg-white/50 backdrop-blur-md rounded-2xl px-6 py-6 border border-white/50 outline-none focus:border-[#173f2c]/50 focus:bg-white shadow-inner transition-all placeholder:text-[#173f2c]/20"
               />
               {farm.farmerName.length > 1 && (
                 <div className="mt-10 animate-fade-in text-2xl font-semibold text-[#526158]">
@@ -264,17 +268,17 @@ export default function Onboarding() {
               <div className="space-y-6">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#7d867e] mb-2">Field Name</label>
-                  <input type="text" value={farm.farmName} onChange={(e) => update("farmName", e.target.value)} placeholder="e.g. Field A" className="w-full bg-white border border-[#e8ece9] rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none focus:border-[#173f2c]" />
+                  <input type="text" value={farm.farmName} onChange={(e) => update("farmName", e.target.value)} placeholder="e.g. Field A" className="w-full bg-white/70 backdrop-blur-xl border border-white shadow-sm rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none focus:border-[#173f2c]/50 focus:bg-white transition-all" />
                 </div>
                 
                 <div className="flex gap-4">
                   <div className="flex-1">
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#7d867e] mb-2">Farm Area</label>
-                    <input type="number" value={farm.area} onChange={(e) => update("area", e.target.value)} placeholder="e.g. 1" className="w-full bg-white border border-[#e8ece9] rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none focus:border-[#173f2c]" />
+                    <input type="number" value={farm.area} onChange={(e) => update("area", e.target.value)} placeholder="e.g. 1" className="w-full bg-white/70 backdrop-blur-xl border border-white shadow-sm rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none focus:border-[#173f2c]/50 focus:bg-white transition-all" />
                   </div>
                   <div className="w-32">
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#7d867e] mb-2">&nbsp;</label>
-                    <select value={farm.areaUnit} onChange={(e) => update("areaUnit", e.target.value)} className="w-full bg-[#eef3e9] border-none rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none cursor-pointer">
+                    <select value={farm.areaUnit} onChange={(e) => update("areaUnit", e.target.value)} className="w-full bg-white/70 backdrop-blur-xl border border-white shadow-sm rounded-2xl p-4 text-lg font-bold text-[#173f2c] outline-none cursor-pointer hover:bg-white transition-all">
                       <option value="acre">acre</option>
                       <option value="hectare">hectare</option>
                     </select>
@@ -374,20 +378,20 @@ export default function Onboarding() {
             <div className="max-w-lg mx-auto text-center">
               <h2 className="font-serif text-4xl font-bold text-[#173f2c] mb-8">When did your crop begin its journey?</h2>
               
-              <div className="bg-white p-6 rounded-[24px] border border-[#e8ece9] shadow-sm mb-8 inline-block">
+              <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-[24px] border border-white shadow-[0_8px_30px_rgba(0,0,0,0.06)] mb-8 inline-block">
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#7d867e] mb-3">Sowing / Transplanting date</label>
                 <input 
                   type="date" 
                   value={farm.sowingDate} 
                   onChange={(e) => update("sowingDate", e.target.value)}
-                  className="bg-[#f4f3ea] text-[#173f2c] font-bold text-xl px-6 py-4 rounded-xl outline-none focus:ring-2 focus:ring-[#173f2c]"
+                  className="bg-white/50 shadow-inner text-[#173f2c] font-bold text-xl px-6 py-4 rounded-xl outline-none focus:ring-2 focus:ring-[#173f2c]/30 transition-all"
                 />
               </div>
 
               {farm.sowingDate && (
                 <div className="animate-fade-in">
                   <p className="text-[#526158] font-semibold mb-4">Your crop is currently…</p>
-                  <div className="bg-[#173f2c] text-white p-8 rounded-[32px] inline-block shadow-xl shadow-[#173f2c]/20">
+                  <div className="bg-gradient-to-b from-[#1c4b35] to-[#113122] text-white p-10 rounded-[32px] inline-block shadow-[0_20px_50px_rgba(23,63,44,0.4)] transform hover:scale-105 transition-all duration-500">
                     <div className="text-5xl mb-3">{currentStage.emoji}</div>
                     <div className="text-sm font-bold uppercase tracking-[.2em] text-[#a5bca7] mb-1">Day {daysSince > 0 ? daysSince : 0}</div>
                     <div className="font-serif text-3xl font-bold">{currentStage.name}</div>
@@ -497,22 +501,22 @@ export default function Onboarding() {
               <h2 className="font-serif text-3xl font-bold text-[#173f2c] mb-8 leading-tight">From here, Sanjivani works with you every day.</h2>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-5 rounded-[24px] text-left border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] text-left border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-3xl mb-3">💧</div>
                   <h4 className="font-bold text-[#173f2c] uppercase tracking-wide text-sm mb-1">Water</h4>
                   <p className="text-xs text-[#7d867e] leading-relaxed">Know when your crop may need water.</p>
                 </div>
-                <div className="bg-white p-5 rounded-[24px] text-left border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] text-left border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-3xl mb-3">🌱</div>
                   <h4 className="font-bold text-[#173f2c] uppercase tracking-wide text-sm mb-1">Nutrition</h4>
                   <p className="text-xs text-[#7d867e] leading-relaxed">Follow crop-stage nutrition guidance.</p>
                 </div>
-                <div className="bg-white p-5 rounded-[24px] text-left border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] text-left border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-3xl mb-3">🌦</div>
                   <h4 className="font-bold text-[#173f2c] uppercase tracking-wide text-sm mb-1">Weather</h4>
                   <p className="text-xs text-[#7d867e] leading-relaxed">Understand how weather affects your crop.</p>
                 </div>
-                <div className="bg-white p-5 rounded-[24px] text-left border border-[#e8ece9]">
+                <div className="bg-white/70 backdrop-blur-xl p-5 rounded-[24px] text-left border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
                   <div className="text-3xl mb-3">🔎</div>
                   <h4 className="font-bold text-[#173f2c] uppercase tracking-wide text-sm mb-1">Health</h4>
                   <p className="text-xs text-[#7d867e] leading-relaxed">Check your plants and watch for risks.</p>
@@ -528,8 +532,8 @@ export default function Onboarding() {
             <div className="max-w-md mx-auto text-center">
               <h2 className="font-serif text-4xl font-bold text-[#173f2c] mb-8">So what do you need to do today?</h2>
               
-              <div className="bg-white p-6 rounded-[28px] shadow-xl shadow-black/5 text-left border border-[#e8ece9] relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-12 bg-[#eef3e9] flex items-center px-6">
+              <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] text-left border border-white relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-r from-[#edf4e9] to-[#e4eee0] flex items-center px-6 border-b border-white/50">
                   <div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#173f2c]">Today's Crop Plan</div>
                 </div>
                 <div className="pt-14 space-y-4">
@@ -568,7 +572,7 @@ export default function Onboarding() {
             <div className="max-w-md mx-auto text-center">
               <h2 className="font-serif text-3xl font-bold text-[#173f2c] mb-8">Every recommendation comes with a reason.</h2>
               
-              <div className="bg-[#173f2c] text-white p-6 rounded-[28px] text-left shadow-lg">
+              <div className="bg-gradient-to-br from-[#1c4b35] to-[#113122] text-white p-8 rounded-[32px] text-left shadow-[0_20px_50px_rgba(23,63,44,0.4)] border border-[#265e44]">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-xl">💧</span>
                   <span className="font-bold uppercase tracking-wider text-sm text-[#a5bca7]">Hold Irrigation</span>
@@ -646,7 +650,7 @@ export default function Onboarding() {
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="bg-white p-4 rounded-2xl border border-[#e8ece9] w-[45%] text-left">
+                  <div className="bg-white/70 backdrop-blur-xl p-4 rounded-[20px] border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] w-[45%] text-left">
                     <div className="text-xl mb-1">🌦</div>
                     <div className="text-xs font-bold text-[#3b4e40]">Weather changes</div>
                   </div>
@@ -657,7 +661,7 @@ export default function Onboarding() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="bg-white p-4 rounded-2xl border border-[#e8ece9] w-[45%] text-left">
+                  <div className="bg-white/70 backdrop-blur-xl p-4 rounded-[20px] border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] w-[45%] text-left">
                     <div className="text-xl mb-1">🌱</div>
                     <div className="text-xs font-bold text-[#3b4e40]">Crop stage changes</div>
                   </div>
@@ -668,7 +672,7 @@ export default function Onboarding() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="bg-white p-4 rounded-2xl border border-[#e8ece9] w-[45%] text-left">
+                  <div className="bg-white/70 backdrop-blur-xl p-4 rounded-[20px] border border-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] w-[45%] text-left">
                     <div className="text-xl mb-1">🔎</div>
                     <div className="text-xs font-bold text-[#3b4e40]">Farmer observes problem</div>
                   </div>
@@ -686,7 +690,7 @@ export default function Onboarding() {
             <div className="max-w-md mx-auto text-center">
               <h2 className="font-serif text-3xl font-bold text-[#173f2c] mb-6 uppercase tracking-wider text-sm">Your Crop Is Ready</h2>
               
-              <div className="bg-white rounded-[32px] p-8 border border-[#e8ece9] shadow-xl shadow-black/5 mb-8">
+              <div className="bg-white/80 backdrop-blur-2xl rounded-[32px] p-10 border border-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] mb-8 transform hover:-translate-y-1 transition-all duration-500">
                 <div className="text-5xl mb-4">{crop.emoji}</div>
                 <h3 className="font-serif text-3xl font-bold text-[#173f2c] mb-6">{crop.name}</h3>
                 
@@ -732,7 +736,7 @@ export default function Onboarding() {
               <p className="text-lg font-bold text-[#3b4e40] mb-2">Sanjivani</p>
               <p className="text-sm font-semibold text-[#7d867e] uppercase tracking-widest mb-12">Right Action. Right Time. Right Amount.</p>
               
-              <button onClick={finish} className="w-full px-8 py-5 bg-[#173f2c] text-white rounded-2xl font-bold text-xl shadow-2xl shadow-[#173f2c]/30 hover:bg-[#123021] transition transform hover:-translate-y-1">
+              <button onClick={finish} className="w-full px-8 py-5 bg-[#173f2c] text-white rounded-[24px] font-bold text-xl shadow-[0_20px_50px_rgba(23,63,44,0.4)] hover:bg-[#123021] transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]">
                 Start Caring for My Crop
               </button>
             </div>
@@ -743,7 +747,7 @@ export default function Onboarding() {
 
       {/* Navigation Footer */}
       {step > 1 && step < 18 && step !== 9 && (
-        <div className="w-full max-w-2xl mx-auto px-6 pb-8 pt-4 flex items-center justify-between border-t border-[#173f2c]/5">
+        <div className="w-full max-w-2xl mx-auto px-6 pb-8 pt-4 flex items-center justify-between border-t border-[#173f2c]/5 backdrop-blur-md">
           <button onClick={back} className="px-5 py-3 rounded-xl font-bold text-[#7d867e] hover:bg-white hover:text-[#173f2c] transition">
             ← Back
           </button>
@@ -764,6 +768,7 @@ export default function Onboarding() {
           </div>
         </div>
       )}
+      </div>
     </main>
   );
 }
