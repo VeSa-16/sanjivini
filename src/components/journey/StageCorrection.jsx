@@ -1,18 +1,21 @@
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import { saveFarm } from "../../store/farmStore";
+import { addLog } from "../../store/logStore";
 import { useState } from "react";
 
 export default function StageCorrection({ farm, crop, stage }) {
   const [open, setOpen] = useState(false);
 
-  function choose(id) {
-    saveFarm({ ...farm, stageOverride: id });
+  function choose(s) {
+    saveFarm({ ...farm, stageOverride: s.id });
+    addLog({ type: "task", taskId: "stage-correct", status: "done", label: "Crop Stage Corrected", result: `Manually corrected stage to ${s.name}` });
     setOpen(false);
   }
 
   function clear() {
     saveFarm({ ...farm, stageOverride: "" });
+    addLog({ type: "task", taskId: "stage-correct-clear", status: "done", label: "Crop Stage Corrected", result: `Reverted to calendar schedule` });
     setOpen(false);
   }
 
@@ -34,7 +37,7 @@ export default function StageCorrection({ farm, crop, stage }) {
               {crop.stages.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => choose(s.id)}
+                  onClick={() => choose(s)}
                   className={`flex items-center gap-3 rounded-2xl border p-3 text-left text-sm transition hover:bg-[#f3f7f0] ${
                     farm.stageOverride === s.id ? "border-[#173f2c] bg-[#edf4e9]" : "border-[#173f2c]/8 bg-white"
                   }`}

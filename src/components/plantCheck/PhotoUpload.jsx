@@ -57,8 +57,8 @@ export default function PhotoUpload() {
 
       {result && (
         <div className="mt-4 rounded-[22px] bg-[#fffbf7] p-4 border border-[#f5e6d3]">
-          <div className="flex items-center gap-2">
-            <Badge tone="amber">{result.confidence}</Badge>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge tone="amber">Possible issue detected</Badge>
             <span className="text-xs font-bold text-[#9b7540]">Not a confirmed diagnosis</span>
           </div>
           <h4 className="mt-3 font-bold text-[#b44b37]">{result.title}</h4>

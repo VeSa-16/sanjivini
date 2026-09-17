@@ -38,11 +38,11 @@ export default function TodayPage() {
           </div>
           <div>
             <div className="font-bold text-[#173f2c]">💧 Water</div>
-            <div className="text-[#687269] mt-0.5">{advice.irrigation.title.replace('.', '')}</div>
+            <div className="text-[#687269] mt-0.5">{advice.tasks.find(t => t.type === 'irrigation')?.what.replace('.', '') || "Optimal"}</div>
           </div>
           <div>
             <div className="font-bold text-[#173f2c]">🌿 Nutrition</div>
-            <div className="text-[#687269] mt-0.5">1 task due</div>
+            <div className="text-[#687269] mt-0.5">{advice.tasks.find(t => t.type === 'nutrition') ? "1 task due" : "Optimal"}</div>
           </div>
           <div>
             <div className="font-bold text-[#173f2c]">🦠 Disease risk</div>

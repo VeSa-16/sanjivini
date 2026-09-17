@@ -2,17 +2,17 @@ const KEY = "sanjivani:farm_v2";
 
 const defaultFarm = {
   id: "farm-1",
-  farmerName: "",
-  farmName: "My Farm",
+  farmerName: "Ramesh Patil",
+  farmName: "Field A",
   cropId: "tomato",
   variety: "Hybrid Tomato",
-  sowingDate: "",
+  sowingDate: new Date(Date.now() - 47 * 86400000).toISOString().slice(0, 10),
   area: "1",
   areaUnit: "acre",
-  soilType: "Black soil",
+  soilType: "Loamy soil",
   irrigationMethod: "Drip",
   stageOverride: "",
-  onboarded: false,
+  onboarded: true,
 };
 
 export function getState() {

@@ -1,6 +1,7 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import BottomNav from "./components/layout/BottomNav";
 import Header from "./components/layout/Header";
+import DemoController from "./components/layout/DemoController";
 import Onboarding from "./pages/Onboarding";
 import TodayPage from "./pages/TodayPage";
 import JourneyPage from "./pages/JourneyPage";
@@ -19,6 +20,7 @@ function ProtectedLayout() {
   return (
     <div className="min-h-screen bg-[#f4f3ea] text-[#20352a]">
       <BottomNav />
+      <DemoController />
       <div className="pb-24 lg:ml-[230px] lg:pb-8">
         <Header />
         <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
