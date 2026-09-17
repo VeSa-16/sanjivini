@@ -1,11 +1,19 @@
 import Card from "../ui/Card";
+import { Droplets, CloudRain, Wind, MapPin } from "lucide-react";
 
-export default function WeatherCard({ weather, context }) {
+export default function WeatherCard({ weather, context, locationName }) {
   return (
     <Card className="overflow-hidden p-5 sm:p-6" interactive>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a]">Today's weather</p>
+          <div className="flex items-center gap-2 mb-3">
+             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a]">Today's weather</p>
+             {locationName && (
+               <p className="text-xs text-[#748078] flex items-center gap-1 font-semibold truncate max-w-[150px]">
+                 <MapPin size={12} className="shrink-0" /> {locationName}
+               </p>
+             )}
+          </div>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="font-serif text-4xl font-bold text-[#173f2c]">{weather.temperature}°</span>
             <span className="text-sm text-[#748078]">Feels {weather.feelsLike}°</span>
@@ -17,9 +25,9 @@ export default function WeatherCard({ weather, context }) {
 
       <div className="mt-5 grid grid-cols-3 gap-2">
         {[
-          ["Humidity", `${weather.humidity}%`, "💧"],
-          ["Rain", `${weather.rainProbability}%`, "🌧️"],
-          ["Wind", `${weather.wind} km/h`, "〰"],
+          ["Humidity", `${weather.humidity}%`, <Droplets size={16} className="text-[#3b7c53]" />],
+          ["Rain", `${weather.rainProbability}%`, <CloudRain size={16} className="text-[#3b7c53]" />],
+          ["Wind", `${weather.wind} km/h`, <Wind size={16} className="text-[#3b7c53]" />],
         ].map(([label, value, icon]) => (
           <div key={label} className="rounded-2xl bg-[#f3f6f0] px-3 py-3">
             <div className="text-sm">{icon}</div>

@@ -63,7 +63,7 @@ export default function TodayPage() {
         </div>
       </Card>
 
-      <div className="grid gap-4 xl:grid-cols-[1.28fr_.72fr]">
+      <div className="grid gap-4 md:grid-cols-[1.28fr_.72fr]">
         <div className="space-y-4">
           <TodayPlanCard crop={crop} stage={stage} progress={progress} />
           <TaskChecklist advice={advice} />
@@ -86,7 +86,7 @@ export default function TodayPage() {
         </div>
 
         <div className="space-y-4">
-          <WeatherCard weather={weather} context={advice.weatherContext} />
+          <WeatherCard weather={weather} context={advice.weatherContext} locationName={farm.location?.name} />
 
           <Card className="p-5 sm:p-6 bg-farm-base">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-farm-muted">Market Update</p>

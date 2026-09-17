@@ -15,41 +15,51 @@ export default function WeeklySummary({ summary }) {
         </div>
       </Card>
 
-      <div>
-        <h3 className="font-serif text-2xl font-bold text-farm-text mb-4">This Week</h3>
-        <Card className="p-5 sm:p-6 bg-white border border-[#e2e7df]">
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3">
-              <div className="text-[#3b7c53]"><CloudSunRain size={24} /></div>
-              <p className="text-[#3d5043] font-medium leading-relaxed">You had <strong className="text-[#173f2c]">2 days of high humidity</strong> this week, increasing fungal risk slightly.</p>
-            </li>
-            <li className="flex items-start gap-3">
-              <div className="text-[#3b7c53]"><Leaf size={24} /></div>
-              <p className="text-[#3d5043] font-medium leading-relaxed">You <strong className="text-[#173f2c]">completed all nutrition tasks</strong> required for the flowering stage.</p>
-            </li>
-            <li className="flex items-start gap-3">
-              <div className="text-[#3b7c53]"><Search size={24} /></div>
-              <p className="text-[#3d5043] font-medium leading-relaxed">You logged <strong className="text-[#173f2c]">{summary.plantChecks} field observations</strong>, helping keep track of crop health.</p>
-            </li>
-          </ul>
-        </Card>
-      </div>
+      {summary.weekly.length === 0 ? (
+        <div className="mt-8 rounded-[24px] bg-[#f5f6f1] p-8 text-center border border-[#e2e7df]/50">
+          <div className="flex justify-center text-[#3b7c53] opacity-60 mb-3"><Search size={40} /></div>
+          <h3 className="font-serif text-xl font-bold text-[#3d5043]">No data available yet</h3>
+          <p className="mt-2 text-sm text-[#7a847c] max-w-sm mx-auto">Weekly reports are generated based on your field observations and completed tasks. Check back after logging some activity.</p>
+        </div>
+      ) : (
+        <>
+          <div>
+            <h3 className="font-serif text-2xl font-bold text-farm-text mb-4">This Week</h3>
+            <Card className="p-5 sm:p-6 bg-white border border-[#e2e7df]">
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="text-[#3b7c53]"><CloudSunRain size={24} /></div>
+                  <p className="text-[#3d5043] font-medium leading-relaxed">You had <strong className="text-[#173f2c]">2 days of high humidity</strong> this week, increasing fungal risk slightly.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="text-[#3b7c53]"><Leaf size={24} /></div>
+                  <p className="text-[#3d5043] font-medium leading-relaxed">You <strong className="text-[#173f2c]">completed all nutrition tasks</strong> required for the {summary.stageName} stage.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="text-[#3b7c53]"><Search size={24} /></div>
+                  <p className="text-[#3d5043] font-medium leading-relaxed">You logged <strong className="text-[#173f2c]">{summary.plantChecks} field observations</strong>, helping keep track of crop health.</p>
+                </li>
+              </ul>
+            </Card>
+          </div>
 
-      <div>
-        <h3 className="font-serif text-2xl font-bold text-farm-text mb-4 text-[#8a928a]">Last Week</h3>
-        <Card className="p-5 sm:p-6 bg-[#f5f6f1] border border-[#e2e7df]/50">
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3 opacity-80">
-              <div className="text-[#3b7c53]"><Droplets size={24} /></div>
-              <p className="text-[#3d5043] font-medium leading-relaxed">Irrigation was delayed once due to expected rainfall.</p>
-            </li>
-            <li className="flex items-start gap-3 opacity-80">
-              <div className="text-[#3b7c53]"><CheckCircle2 size={24} /></div>
-              <p className="text-[#3d5043] font-medium leading-relaxed">Completed 5 out of 6 recommended tasks.</p>
-            </li>
-          </ul>
-        </Card>
-      </div>
+          <div>
+            <h3 className="font-serif text-2xl font-bold text-farm-text mb-4 text-[#8a928a]">Last Week</h3>
+            <Card className="p-5 sm:p-6 bg-[#f5f6f1] border border-[#e2e7df]/50">
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 opacity-80">
+                  <div className="text-[#3b7c53]"><Droplets size={24} /></div>
+                  <p className="text-[#3d5043] font-medium leading-relaxed">Irrigation was delayed once due to expected rainfall.</p>
+                </li>
+                <li className="flex items-start gap-3 opacity-80">
+                  <div className="text-[#3b7c53]"><CheckCircle2 size={24} /></div>
+                  <p className="text-[#3d5043] font-medium leading-relaxed">Completed 5 out of 6 recommended tasks.</p>
+                </li>
+              </ul>
+            </Card>
+          </div>
+        </>
+      )}
       
       <Card className="mt-4 p-5 sm:p-6 bg-[#edf4e9]">
         <h3 className="font-serif text-xl font-bold text-[#173f2c]">Next-week focus</h3>
