@@ -5,8 +5,9 @@
         "rainProbabilityMin": 65
       },
       "status": "postpone",
-      "title": "Rain may cover today's need",
-      "message": "Rain is likely soon. Check soil moisture before irrigating and avoid unnecessary watering.",
+      "title": "Probably no irrigation today.",
+      "message": "Check the soil before irrigating.",
+      "why": "Rain is expected today.",
       "tone": "info"
     },
     {
@@ -19,8 +20,9 @@
         "rainProbabilityMax": 35
       },
       "status": "check",
-      "title": "Protect the crop from moisture stress",
-      "message": "The crop is in a sensitive stage and conditions are warm. Check the root zone before deciding irrigation.",
+      "title": "Irrigate today.",
+      "message": "Suggested amount depends on farm size. Best time: Early morning / Evening.",
+      "why": "Your crop is in a high-water-demand stage and rainfall is insufficient.",
       "tone": "warning"
     },
     {
@@ -29,15 +31,17 @@
         "rainProbabilityMax": 35
       },
       "status": "check",
-      "title": "Irrigation check is due",
-      "message": "No recent irrigation is recorded. Check soil moisture in the field before watering.",
+      "title": "Check soil moisture tomorrow morning.",
+      "message": "Water if the soil feels dry.",
+      "why": "No irrigation has been recorded for a few days and weather is dry.",
       "tone": "action"
     }
   ],
   "fallback": {
     "status": "check",
-    "title": "Check soil moisture today",
-    "message": "Use field moisture and crop condition to decide whether irrigation is needed.",
+    "title": "Check soil moisture today.",
+    "message": "Use field moisture to decide whether irrigation is needed.",
+    "why": "Regular checking prevents overwatering.",
     "tone": "normal"
   }
 }

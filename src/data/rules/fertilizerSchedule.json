@@ -2,43 +2,59 @@
   "schedule": [
     {
       "stageId": "establishment",
-      "title": "Establishment nutrition",
-      "message": "Focus on healthy establishment. Follow your soil-test and local crop recommendation before applying nutrients."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Focus on healthy establishment. Follow your soil-test and local crop recommendation.",
+      "why": "Young plants need balanced nutrition to establish strong roots.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "vegetative",
-      "title": "Vegetative nutrition",
-      "message": "Review the nutrient plan for active leaf and stem growth, considering what has already been applied."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Review the nutrient plan for active leaf and stem growth.",
+      "why": "Your crop is entering a phase of rapid leaf growth which requires nitrogen.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "budding",
-      "title": "Prepare for flowering",
-      "message": "Review the next scheduled nutrient application and avoid repeating an application already recorded."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Review the next scheduled nutrient application.",
+      "why": "Proper nutrition now supports flower bud formation.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "flowering",
-      "title": "Flowering-stage nutrition",
-      "message": "The crop is flowering. Review stage-specific nutrition against your soil-test and previous application."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Review stage-specific nutrition against your soil-test.",
+      "why": "Your tomato crop is entering an important flowering period.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "fruit-set",
-      "title": "Support fruit set",
-      "message": "Review nutrient needs for fruit setting while keeping a record of previous applications."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Review nutrient needs for fruit setting.",
+      "why": "Fruit setting requires potassium and balanced micronutrients.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "fruit-development",
-      "title": "Fruit-development nutrition",
-      "message": "Review the crop plan for fruit development and only apply what is due for your field."
+      "title": "Apply scheduled nutrient treatment.",
+      "message": "Review the crop plan for fruit development.",
+      "why": "Nutrients support fruit size and quality.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "maturation",
       "title": "Maturity-stage review",
-      "message": "Avoid unnecessary late applications. Follow crop and local expert recommendations."
+      "message": "Avoid unnecessary late applications.",
+      "why": "Late applications can delay harvest or waste resources.",
+      "how": "Follow your local agricultural recommendation."
     },
     {
       "stageId": "harvest",
       "title": "Harvest period",
-      "message": "Focus on harvest and crop records. Only perform applications that are appropriate for the harvest interval."
+      "message": "Only perform applications that are appropriate for the harvest interval.",
+      "why": "Chemical applications close to harvest may affect safety.",
+      "how": "Strictly follow pre-harvest intervals for any products."
     }
   ]
 }

@@ -6,6 +6,9 @@ import TodayPage from "./pages/TodayPage";
 import JourneyPage from "./pages/JourneyPage";
 import WeeklyReportPage from "./pages/WeeklyReportPage";
 import HistoryPage from "./pages/HistoryPage";
+import SoilInfoPage from "./pages/SoilInfoPage";
+import ExpenseLedger from "./pages/ExpenseLedger";
+import HarvestFlow from "./pages/HarvestFlow";
 import { getFarm } from "./store/farmStore";
 
 function ProtectedLayout() {
@@ -37,6 +40,9 @@ export default function App() {
         <Route path="/journey" element={<JourneyPage />} />
         <Route path="/weekly" element={<WeeklyReportPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/soil" element={<SoilInfoPage />} />
+        <Route path="/ledger" element={<ExpenseLedger />} />
+        <Route path="/harvest" element={<HarvestFlow />} />
       </Route>
       <Route path="/" element={<Navigate to={farm.onboarded ? "/today" : "/onboarding"} replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />

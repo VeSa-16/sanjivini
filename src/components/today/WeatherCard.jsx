@@ -1,6 +1,6 @@
 import Card from "../ui/Card";
 
-export default function WeatherCard({ weather }) {
+export default function WeatherCard({ weather, context }) {
   return (
     <Card className="overflow-hidden p-5 sm:p-6" interactive>
       <div className="flex items-start justify-between">
@@ -29,8 +29,15 @@ export default function WeatherCard({ weather }) {
         ))}
       </div>
 
-      <div className="mt-4 rounded-2xl bg-[#edf5e9] px-4 py-3 text-sm leading-6 text-[#46604c]">
-        <span className="mr-2">✦</span>{weather.tip}
+      <div className="mt-4 rounded-2xl bg-[#edf5e9] p-4 text-sm leading-6">
+        <div className="mb-2 border-b border-[#173f2c]/10 pb-2">
+          <div className="text-xs font-bold uppercase tracking-[.12em] text-[#788079]">Crop impact</div>
+          <div className="font-semibold text-[#173f2c]">{context?.impact || weather.tip}</div>
+        </div>
+        <div>
+          <div className="text-xs font-bold uppercase tracking-[.12em] text-[#788079]">Action</div>
+          <div className="font-semibold text-[#173f2c]">{context?.action || "No specific action required today."}</div>
+        </div>
       </div>
     </Card>
   );

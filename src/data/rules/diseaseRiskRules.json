@@ -4,9 +4,10 @@
       "id": "humid-rain",
       "humidityMin": 82,
       "rainProbabilityMin": 55,
-      "risk": "Elevated",
-      "title": "Fungal conditions are favorable",
-      "message": "High humidity with rain can favor several tomato diseases. Inspect lower leaves, stems and dense canopy areas today.",
+      "risk": "Moderate",
+      "title": "Moderate risk detected",
+      "message": "Check your crop",
+      "why": "High humidity + recent rainfall + current crop stage can increase the risk of fungal disease.",
       "checks": [
         "Dark or water-soaked spots",
         "Yellowing that is spreading",
@@ -17,9 +18,10 @@
     {
       "id": "humid",
       "humidityMin": 80,
-      "risk": "Watch",
-      "title": "Keep a closer eye on foliage",
-      "message": "Humidity is high. Inspect leaves during your field round and note anything unusual.",
+      "risk": "Watch closely",
+      "title": "Watch closely",
+      "message": "Check your crop",
+      "why": "Humidity is high, which can encourage early signs of fungal infection.",
       "checks": [
         "Leaf spots",
         "Yellow patches",
@@ -29,9 +31,10 @@
     }
   ],
   "fallback": {
-    "risk": "Low",
-    "title": "No major weather-driven alert",
-    "message": "Continue normal crop inspection. Report any visible change even when weather risk is low.",
+    "risk": "Low risk",
+    "title": "Low risk",
+    "message": "Continue normal crop inspection.",
+    "why": "Weather conditions are currently not favoring major disease development.",
     "checks": [
       "Leaf color",
       "Flower condition",

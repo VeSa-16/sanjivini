@@ -12,8 +12,27 @@ const questions = [
 ];
 
 export default function PlantCheckForm() {
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [saved, setSaved] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+
+  const q = questions[step];
+
+  function handleAnswer(option) {
+    setAnswers((a) => ({ ...a, [q.id]: option }));
+    setTimeout(() => {
+      setStep(step + 1);
+    }, 300);
+  }
+
+  function simulateVoice() {
+    setIsListening(true);
+    setTimeout(() => {
+      setIsListening(false);
+      handleAnswer(q.options[q.options.length - 1]);
+    }, 2000);
+  }
 
   function submit() {
     addLog({
@@ -22,46 +41,78 @@ export default function PlantCheckForm() {
       answers,
     });
     setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    setTimeout(() => {
+      setSaved(false);
+      setStep(0);
+      setAnswers({});
+    }, 2500);
+  }
+
+  if (saved) {
+    return (
+      <Card className="p-8 text-center bg-[#f4f7f4] border border-[#a9c9ad]">
+        <div className="text-4xl">🌿</div>
+        <h3 className="mt-4 font-serif text-xl font-bold text-[#173f2c]">Looking good!</h3>
+        <p className="mt-2 text-sm text-[#526158]">Tomato leaves should be deep green right now. We'll keep an eye on this.</p>
+      </Card>
+    );
+  }
+
+  if (step >= questions.length) {
+    return (
+      <Card className="p-5 sm:p-6 text-center">
+        <h3 className="font-serif text-2xl font-bold text-farm-text">Check complete!</h3>
+        <p className="mt-2 text-sm text-farm-muted">You've answered all questions.</p>
+        <div className="mt-6 flex gap-3 justify-center">
+          <button onClick={() => setStep(0)} className="rounded-xl px-5 py-3 font-bold bg-farm-base text-farm-muted hover:bg-[#e4e7e2]">Review</button>
+          <Button onClick={submit}>Save to history</Button>
+        </div>
+      </Card>
+    );
   }
 
   return (
     <Card className="p-5 sm:p-6">
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a]">Field observation</p>
-      <h3 className="mt-1 font-serif text-2xl font-bold text-[#173f2c]">5-minute plant check</h3>
-      <p className="mt-2 text-sm leading-6 text-[#748078]">You do not need to diagnose anything. Simply record what you can see.</p>
-
-      <div className="mt-5 space-y-4">
-        {questions.map((q, idx) => (
-          <div key={q.id} className="rounded-[22px] bg-[#f7f7f2] p-4">
-            <div className="flex items-start gap-3">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white text-xs font-bold text-[#5d6d61] shadow-sm">{idx + 1}</span>
-              <div className="flex-1">
-                <p className="text-sm font-bold text-[#304639]">{q.label}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {q.options.map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => setAnswers((a) => ({ ...a, [q.id]: option }))}
-                      className={`rounded-xl px-3 py-2 text-xs font-bold transition ${
-                        answers[q.id] === option
-                          ? "bg-[#173f2c] text-white"
-                          : "bg-white text-[#687269] shadow-sm hover:bg-[#edf4e9]"
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="flex justify-between items-center">
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-farm-muted">Field observation</p>
+        <p className="text-xs font-bold text-farm-muted">Step {step + 1} of {questions.length}</p>
       </div>
-
-      <Button className="mt-5 w-full sm:w-auto" onClick={submit} disabled={Object.keys(answers).length === 0}>
-        {saved ? "✓ Saved to farm history" : "Save plant check"}
-      </Button>
+      
+      <div className="mt-6 text-center min-h-[160px] flex flex-col justify-center">
+        <h3 className="font-serif text-2xl font-bold text-farm-text mb-6">{q.label}</h3>
+        
+        <div className="flex flex-wrap justify-center gap-3">
+          {q.options.map((option) => (
+            <button
+              key={option}
+              onClick={() => handleAnswer(option)}
+              className={`rounded-2xl px-6 py-4 text-sm font-bold transition shadow-sm ${
+                answers[q.id] === option
+                  ? "bg-farm-text text-white"
+                  : "bg-farm-base text-farm-text hover:bg-[#e4e7e2]"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      <div className="mt-6 flex justify-center border-t border-farm-text/10 pt-4">
+        <button 
+          onClick={simulateVoice}
+          disabled={isListening}
+          className={`flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition shadow-sm ${isListening ? "bg-red-100 text-red-600 animate-pulse" : "bg-white text-farm-text border border-farm-text/20"}`}
+        >
+          <span className="text-xl">🎙️</span> {isListening ? "Listening..." : "Tap to answer by voice"}
+        </button>
+      </div>
+      
+      {step > 0 && (
+        <button onClick={() => setStep(step - 1)} className="mt-4 text-xs font-bold text-farm-muted block w-full text-center">
+          ← Back
+        </button>
+      )}
     </Card>
   );
 }

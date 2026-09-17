@@ -1,9 +1,8 @@
-import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 
 export default function TodayPlanCard({ crop, stage, progress }) {
   return (
-    <Card className="relative overflow-hidden bg-[#173f2c] p-0 text-white">
+    <section className="relative overflow-hidden rounded-[28px] border border-[#183b2a]/8 bg-[#173f2c] p-0 text-white shadow-[0_16px_50px_rgba(26,62,43,0.08)]">
       <div className="absolute -right-16 -top-20 size-64 rounded-full bg-[#7ba66e]/20 blur-2xl" />
       <div className="absolute -bottom-24 left-1/3 size-56 rounded-full bg-[#d8ae63]/15 blur-2xl" />
       <div className="relative p-6 sm:p-7">
@@ -36,6 +35,6 @@ export default function TodayPlanCard({ crop, stage, progress }) {
           ))}
         </div>
       </div>
-    </Card>
+    </section>
   );
 }

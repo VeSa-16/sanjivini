@@ -19,16 +19,17 @@ export default function PhotoUpload() {
 
   function analyze() {
     const mock = {
-      title: "Possible leaf-stress pattern",
+      title: "Possible Early Blight",
       confidence: "Demo result",
-      note: "The photo shows a visible change in leaf appearance. Check whether the same symptom is spreading to nearby plants and compare it with today's crop-health alert.",
+      note: "Photo analyzed. The spots on your leaves look like early blight. This is common with recent humidity.",
+      action: "Apply Copper Fungicide before tomorrow evening."
     };
     setResult(mock);
     addLog({ type: "photo", label: "Plant photo checked", result: mock.title });
   }
 
   return (
-    <Card className="overflow-hidden p-5 sm:p-6">
+    <Card className="overflow-hidden p-5 sm:p-6 bg-white">
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a928a]">Plant photo</p>
       <h3 className="mt-1 font-serif text-2xl font-bold text-[#173f2c]">Something looks unusual?</h3>
       <p className="mt-2 text-sm leading-6 text-[#748078]">Add a clear photo of the affected leaf, flower, stem or fruit. This prototype returns a safe mock assessment.</p>
@@ -50,18 +51,22 @@ export default function PhotoUpload() {
             <img src={preview} alt="Uploaded crop" className="h-56 w-full object-cover" />
             <button onClick={() => {setPreview(""); setResult(null)}} className="absolute right-3 top-3 rounded-xl bg-black/55 px-3 py-2 text-xs font-bold text-white backdrop-blur">Change</button>
           </div>
-          {!result && <Button className="mt-3 w-full" onClick={analyze}>Check this photo</Button>}
+          {!result && <Button className="mt-3 w-full bg-[#173f2c]" onClick={analyze}>Check this photo</Button>}
         </div>
       )}
 
       {result && (
-        <div className="mt-4 rounded-[22px] bg-[#fff6e8] p-4">
+        <div className="mt-4 rounded-[22px] bg-[#fffbf7] p-4 border border-[#f5e6d3]">
           <div className="flex items-center gap-2">
             <Badge tone="amber">{result.confidence}</Badge>
             <span className="text-xs font-bold text-[#9b7540]">Not a confirmed diagnosis</span>
           </div>
-          <h4 className="mt-3 font-bold text-[#644c2c]">{result.title}</h4>
+          <h4 className="mt-3 font-bold text-[#b44b37]">{result.title}</h4>
           <p className="mt-1 text-sm leading-6 text-[#7e6a50]">{result.note}</p>
+          <div className="mt-3 pt-3 border-t border-[#f5e6d3]">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-[#b44b37]">Action</p>
+            <p className="mt-1 text-sm font-bold text-[#173f2c]">{result.action}</p>
+          </div>
         </div>
       )}
     </Card>

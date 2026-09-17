@@ -1,8 +1,8 @@
 export default function Badge({ children, tone = "green", className = "" }) {
   const tones = {
-    green: "bg-[#e6f3e9] text-[#285f3e]",
-    amber: "bg-[#fff4d8] text-[#8b6421]",
-    red: "bg-[#feece7] text-[#a54830]",
+    green: "bg-urgency-green-bg text-urgency-green-text",
+    amber: "bg-urgency-yellow-bg text-urgency-yellow-text",
+    red: "bg-urgency-red-bg text-urgency-red-text",
     blue: "bg-[#e9f3f7] text-[#2e6475]",
     neutral: "bg-[#f0f2ed] text-[#5d675f]",
   };

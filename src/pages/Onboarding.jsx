@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import tomato from "../data/crops/tomato.json";
 import wheat from "../data/crops/wheat.json";
-import { defaultFarm, saveFarm } from "../store/farmStore";
+import { defaultFarm, saveFarm, setActiveFarm } from "../store/farmStore";
 
 const crops = [tomato, wheat];
 
 export default function Onboarding() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isNew = location.state?.isNew;
+
   const [step, setStep] = useState(1);
   const [farm, setFarm] = useState({
     ...defaultFarm,
+    id: isNew ? crypto.randomUUID() : defaultFarm.id,
     sowingDate: new Date(Date.now() - 47 * 86400000).toISOString().slice(0, 10),
   });
 
@@ -24,6 +28,7 @@ export default function Onboarding() {
 
   function finish() {
     saveFarm({ ...farm, onboarded: true });
+    setActiveFarm(farm.id);
     navigate("/today");
   }
 
@@ -34,21 +39,18 @@ export default function Onboarding() {
           <div className="absolute -right-32 -top-24 size-96 rounded-full bg-[#6c9a68]/25 blur-3xl" />
           <div className="absolute -bottom-36 -left-24 size-96 rounded-full bg-[#d4ad64]/15 blur-3xl" />
           <div className="relative">
-            <div className="flex items-center gap-3">
-              <div className="grid size-11 place-items-center rounded-2xl bg-white/12 font-serif text-xl font-bold">S</div>
-              <div>
-                <div className="font-serif text-2xl font-bold">Sanjivani</div>
-                <div className="text-xs uppercase tracking-[.18em] text-white/45">Crop companion</div>
-              </div>
+            <div className="px-2 py-2">
+              <img src="/logo.png" alt="Sanjivani" className="h-16 object-contain brightness-0 invert drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] origin-left scale-110" />
+              <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45 ml-1">Crop companion</div>
             </div>
 
             <div className="mt-24">
               <div className="text-6xl">🌱</div>
               <h1 className="mt-7 max-w-sm font-serif text-5xl font-bold leading-[1.03] tracking-[-0.04em]">
-                Your crop knows what comes next.
+                Let’s understand your crop.
               </h1>
               <p className="mt-5 max-w-sm text-base leading-7 text-white/62">
-                Tell Sanjivani what you are growing. Every day after that, open one screen and know what deserves attention.
+                Tell us a few things. Sanjivani will guide you from sowing to harvest.
               </p>
             </div>
           </div>
@@ -61,14 +63,16 @@ export default function Onboarding() {
         <section className="flex flex-col p-5 sm:p-9 lg:p-12">
           <div className="flex items-center justify-between">
             <div className="lg:hidden">
-              <div className="font-serif text-2xl font-bold text-[#173f2c]">Sanjivani</div>
+              <img src="/logo.png" alt="Sanjivani" className="h-14 object-contain mb-2 drop-shadow-md origin-left scale-110" />
               <div className="text-xs text-[#7d867e]">Set up your first crop</div>
             </div>
-            <div className="ml-auto flex gap-2">
-              {[1,2,3].map((n) => (
-                <div key={n} className={`h-2 rounded-full transition-all ${n === step ? "w-8 bg-[#173f2c]" : n < step ? "w-4 bg-[#8caf8d]" : "w-4 bg-[#e1e5df]"}`} />
-              ))}
-            </div>
+            {step < 4 && (
+              <div className="ml-auto flex gap-2">
+                {[1,2,3].map((n) => (
+                  <div key={n} className={`h-2 rounded-full transition-all ${n === step ? "w-8 bg-[#173f2c]" : n < step ? "w-4 bg-[#8caf8d]" : "w-4 bg-[#e1e5df]"}`} />
+                ))}
+              </div>
+            )}
           </div>
 
           {step === 1 && (
@@ -132,20 +136,47 @@ export default function Onboarding() {
             </div>
           )}
 
+          {step === 4 && (
+            <div className="my-auto py-10 text-center">
+              <div className="text-6xl mb-4">🌱</div>
+              <h2 className="font-serif text-4xl font-bold tracking-tight text-[#173f2c]">Your crop journey is ready</h2>
+              
+              <div className="mx-auto mt-8 max-w-sm rounded-3xl bg-[#f5f7f1] p-6 shadow-sm border border-[#173f2c]/5 text-left">
+                <div className="flex items-center gap-3">
+                  <div className="grid size-12 place-items-center rounded-2xl bg-white text-2xl shadow-sm">
+                    {crops.find(c => c.id === farm.cropId)?.emoji}
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#173f2c]">{crops.find(c => c.id === farm.cropId)?.name}</div>
+                    <div className="text-xs text-[#667269]">Day {Math.floor((Date.now() - new Date(farm.sowingDate).getTime()) / 86400000)}</div>
+                  </div>
+                </div>
+                <div className="mt-4 rounded-xl bg-white p-3 border border-[#173f2c]/5">
+                  <div className="text-xs font-bold uppercase tracking-[.12em] text-[#788079]">Current Stage</div>
+                  <div className="font-serif text-lg font-bold text-[#173f2c] mt-1">Flowering Stage</div>
+                </div>
+              </div>
+
+              <p className="mx-auto mt-6 max-w-sm text-sm leading-6 text-[#748078]">
+                Your recommendations will change as your crop grows.
+              </p>
+            </div>
+          )}
+
           <div className="flex items-center justify-between border-t border-[#173f2c]/8 pt-5">
             <button
               onClick={() => setStep((s) => Math.max(1, s - 1))}
-              className={`rounded-2xl px-4 py-3 text-sm font-bold text-[#69746c] ${step === 1 ? "invisible" : ""}`}
+              className={`rounded-2xl px-4 py-3 text-sm font-bold text-[#69746c] ${step === 1 || step === 4 ? "invisible" : ""}`}
             >
               ← Back
             </button>
-            {step < 3 ? (
+            {step < 4 ? (
               <button onClick={() => setStep((s) => s + 1)} className="rounded-2xl bg-[#173f2c] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#173f2c]/15">
                 Continue →
               </button>
             ) : (
-              <button onClick={finish} className="rounded-2xl bg-[#173f2c] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#173f2c]/15">
-                Start my crop journey →
+              <button onClick={finish} className="mx-auto rounded-2xl bg-[#173f2c] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#173f2c]/15 w-full max-w-sm">
+                Start my crop journey
               </button>
             )}
           </div>
