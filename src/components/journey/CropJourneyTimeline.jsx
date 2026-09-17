@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../ui/Card";
+import { Check, Leaf } from "lucide-react";
 
 export default function CropJourneyTimeline({ crop, currentStage }) {
   const currentIndex = crop.stages.findIndex((s) => s.id === currentStage.id);
@@ -44,7 +45,7 @@ export default function CropJourneyTimeline({ crop, currentStage }) {
                   ? "border-[#a9c7ae] bg-urgency-green-bg"
                   : "border-[#e2e7df] bg-white"
               }`}>
-                {done ? "✓" : stage.emoji}
+                {done ? <Check size={20} /> : <Leaf size={20} />}
               </div>
 
               <div className={`mb-5 min-w-0 flex-1 rounded-[22px] px-4 py-3.5 transition-colors ${active ? "bg-[#edf4e9]" : "hover:bg-farm-base"}`}>

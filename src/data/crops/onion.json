@@ -1,0 +1,12 @@
+{
+  "id": "onion",
+  "name": "Onion",
+  "emoji": "🧅",
+  "stages": [
+    { "id": "nursery", "name": "Nursery", "startDay": 0, "endDay": 45, "emoji": "🌱" },
+    { "id": "transplanting", "name": "Transplanting", "startDay": 46, "endDay": 55, "emoji": "🌿" },
+    { "id": "vegetative", "name": "Vegetative Growth", "startDay": 56, "endDay": 90, "emoji": "🌿" },
+    { "id": "bulb_formation", "name": "Bulb Formation", "startDay": 91, "endDay": 120, "emoji": "🧅" },
+    { "id": "harvest", "name": "Harvest", "startDay": 121, "endDay": 140, "emoji": "🌾" }
+  ]
+}

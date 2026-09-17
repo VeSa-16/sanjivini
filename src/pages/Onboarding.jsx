@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
+import { Sprout, Leaf, Flower2, Droplets, Search, MapPin, Sparkles, Bug, Camera, Wheat, CheckCircle2, CloudSunRain } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import tomato from "../data/crops/tomato.json";
 import wheat from "../data/crops/wheat.json";
+import onion from "../data/crops/onion.json";
+import chilli from "../data/crops/chilli.json";
+import potato from "../data/crops/potato.json";
+import maize from "../data/crops/maize.json";
 import { defaultFarm, saveFarm, setActiveFarm } from "../store/farmStore";
 import { resolveStage } from "../engine/stageResolver";
 
-const crops = [tomato, wheat];
+const crops = [tomato, wheat, onion, chilli, potato, maize];
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -56,8 +61,18 @@ export default function Onboarding() {
     setIsGettingLocation(true);
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          update("location", { lat: position.coords.latitude, lon: position.coords.longitude });
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          let locationName = "Location acquired";
+          try {
+            const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+            const data = await res.json();
+            locationName = data.city || data.locality || data.principalSubdivision || "Location acquired";
+          } catch (e) {
+            console.error("Reverse geocoding failed", e);
+          }
+          update("location", { lat, lon, name: locationName });
           setIsGettingLocation(false);
         },
         (error) => {
@@ -129,8 +144,8 @@ export default function Onboarding() {
 
   return (
     <main className="min-h-screen bg-[#f4f3ea] text-[#20352a] font-sans flex flex-col">
-      {/* Progress Bar (Hidden on Screen 1 & 18) */}
-      {step > 1 && step < 18 && (
+      {/* Progress Bar (Hidden on Screen 1 and post-setup screens) */}
+      {step > 1 && step < 10 && (
         <div className="w-full max-w-4xl mx-auto px-6 pt-8 pb-4">
           <div className="flex justify-between items-center relative">
             <div className="absolute left-0 right-0 h-[2px] bg-[#e1e5df] top-1/2 -translate-y-1/2 -z-10"></div>
@@ -593,7 +608,7 @@ export default function Onboarding() {
                   { label: "Looks normal", icon: "✓" }
                 ].map(opt => (
                   <div key={opt.label} className="bg-white p-4 rounded-2xl border border-[#e8ece9] flex items-center gap-3">
-                    <span className="text-xl">{opt.icon}</span>
+                    <span className="text-[#3b7c53]">{opt.icon}</span>
                     <span className="text-xs font-bold text-[#3b4e40]">{opt.label}</span>
                   </div>
                 ))}

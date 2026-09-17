@@ -1,0 +1,12 @@
+{
+  "id": "chilli",
+  "name": "Chilli",
+  "emoji": "🌶️",
+  "stages": [
+    { "id": "nursery", "name": "Nursery", "startDay": 0, "endDay": 35, "emoji": "🌱" },
+    { "id": "transplanting", "name": "Transplanting", "startDay": 36, "endDay": 45, "emoji": "🌿" },
+    { "id": "vegetative", "name": "Vegetative Growth", "startDay": 46, "endDay": 75, "emoji": "🌿" },
+    { "id": "flowering", "name": "Flowering & Fruiting", "startDay": 76, "endDay": 110, "emoji": "🌼" },
+    { "id": "harvest", "name": "Harvest", "startDay": 111, "endDay": 160, "emoji": "🌶️" }
+  ]
+}

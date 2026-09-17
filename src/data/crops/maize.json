@@ -1,0 +1,12 @@
+{
+  "id": "maize",
+  "name": "Maize",
+  "emoji": "🌽",
+  "stages": [
+    { "id": "germination", "name": "Germination & Seedling", "startDay": 0, "endDay": 20, "emoji": "🌱" },
+    { "id": "vegetative", "name": "Vegetative Growth", "startDay": 21, "endDay": 60, "emoji": "🌿" },
+    { "id": "tasseling", "name": "Tasseling & Silking", "startDay": 61, "endDay": 80, "emoji": "🌼" },
+    { "id": "grain_fill", "name": "Grain Fill", "startDay": 81, "endDay": 110, "emoji": "🌽" },
+    { "id": "maturation", "name": "Maturation & Harvest", "startDay": 111, "endDay": 120, "emoji": "🌾" }
+  ]
+}
