@@ -3,6 +3,7 @@ import weatherData from "../data/mockWeather.json";
 import { generateTodayAdvice } from "../engine/adviceGenerator";
 import { useCropStage } from "./useCropStage";
 import { getDemoState } from "../store/demoStore";
+import { fetchLiveWeather } from "../data/weatherService";
 
 function scenarioForToday(demoWeatherMode) {
   if (demoWeatherMode && demoWeatherMode !== "normal") {
@@ -10,12 +11,13 @@ function scenarioForToday(demoWeatherMode) {
     const match = weatherData.scenarios.find(s => s.id.includes(demoWeatherMode));
     if (match) return match;
   }
-  return weatherData.scenarios[1]; // fallback to warm-dry as 'normal'
+  return null;
 }
 
 export function useTodayAdvice() {
   const cropState = useCropStage();
   const [demoState, setDemoState] = useState(getDemoState());
+  const [weather, setWeather] = useState(weatherData.scenarios[1]); // fallback initial
 
   useEffect(() => {
     const refresh = () => setDemoState(getDemoState());
@@ -23,7 +25,21 @@ export function useTodayAdvice() {
     return () => window.removeEventListener("sanjivani:demo-updated", refresh);
   }, []);
 
-  const weather = useMemo(() => scenarioForToday(demoState.weatherMode), [demoState.weatherMode]);
+  useEffect(() => {
+    const override = scenarioForToday(demoState.weatherMode);
+    if (override) {
+      setWeather(override);
+    } else {
+      let isMounted = true;
+      const lat = cropState.activeFarm?.location?.lat || 18.5204;
+      const lon = cropState.activeFarm?.location?.lon || 73.8567;
+      
+      fetchLiveWeather(lat, lon).then(liveData => {
+        if (isMounted) setWeather(liveData);
+      });
+      return () => { isMounted = false; };
+    }
+  }, [demoState.weatherMode, cropState.activeFarm]);
 
   const advice = useMemo(
     () => generateTodayAdvice(cropState.stage, weather, { 

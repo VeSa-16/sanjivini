@@ -12,7 +12,7 @@ const defaultFarm = {
   soilType: "Loamy soil",
   irrigationMethod: "Drip",
   stageOverride: "",
-  onboarded: true,
+  onboarded: false,
 };
 
 export function getState() {

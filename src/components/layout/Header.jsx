@@ -1,6 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCropStage } from "../../hooks/useCropStage";
 import { useFarms } from "../../hooks/useFarms";
+import tomato from "../../data/crops/tomato.json";
+import wheat from "../../data/crops/wheat.json";
+
+const allCrops = { tomato, wheat };
 
 const pageTitles = {
   "/today": ["Today", "Your farm, simplified."],
@@ -41,14 +45,15 @@ export default function Header() {
           <select 
             value={activeFarmId}
             onChange={handleFarmChange}
-            className="appearance-none bg-transparent text-sm font-bold text-[#173f2c] focus:outline-none cursor-pointer"
+            className="appearance-none bg-transparent text-sm font-bold text-[#173f2c] focus:outline-none cursor-pointer w-full max-w-[200px]"
           >
-            {farms.map((f) => (
-              <option key={f.id} value={f.id}>{f.farmName || "My Farm"}</option>
-            ))}
-            <option value="ADD_NEW">+ Add new field</option>
+            {farms.map((f) => {
+              const fCrop = allCrops[f.cropId] || tomato;
+              return <option key={f.id} value={f.id}>{fCrop.emoji} {fCrop.name} — {f.farmName || "My Farm"}</option>;
+            })}
+            <option value="ADD_NEW">+ Add another crop</option>
           </select>
-          <p className="truncate text-xs text-[#768078]">{crop.name} • {activeFarm.area} {activeFarm.areaUnit}</p>
+          <p className="truncate text-xs text-[#768078]">{activeFarm.area} {activeFarm.areaUnit} • {activeFarm.soilType}</p>
         </div>
       </div>
     </header>
