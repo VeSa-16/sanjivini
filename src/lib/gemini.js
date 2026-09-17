@@ -1,11 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
 const ai1 = new GoogleGenAI({ 
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY_1 
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY_1 || "missing-key-1"
 });
 
 const ai2 = new GoogleGenAI({ 
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY_2 
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY_2 || "missing-key-2"
 });
 
 async function fetchWithFallback(params) {
